@@ -1,0 +1,15 @@
+# 文档：https://flutter.dev/docs/development/accessibility-and-localization/internationalization
+
+# this file should put at the root folder of the project i.e. /l10n.yaml/
+
+arb-dir: lib/l10n
+template-arb-file: strings_zh.arb
+output-localization-file: l10n.dart
+output-class: L10n
+# track this code with the version control system
+synthetic-package: false
+output-dir: lib/l10n/generated
+# To trigger the generation of the localization files, you need to run the command
+#   flutter gen-l10n   or   flutter pub get
+# After that, you will be able to see the generated code under the .dart_tool folder.
+# Note: Each time you run, hot-reload, hot-restart, or run flutter pub get command, you will trigger code generation.
