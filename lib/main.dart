@@ -8,7 +8,10 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 import '../features/page2.dart';
+import 'features/admob/google_ad.dart';
 import 'features/animation.dart';
+import 'features/background_location/background_location.dart';
+import 'features/background_locator/background_locator.dart';
 import 'features/data_persist.dart';
 import 'features/flutter_map/flutter_map.dart';
 import 'features/google_map/google_map.dart';
@@ -22,6 +25,7 @@ import 'features/lifecycle/life_cycle_page.dart';
 import 'features/provider/counter_model.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // ignore: import_of_legacy_library_into_null_safe
+import 'features/webview/webview_app.dart';
 import 'l10n/generated/l10n.dart';
 import 'dart:async';
 
@@ -259,13 +263,43 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
               TextButton(
-                child: const Text("Fetch location"),
+                child: const Text("Fetch location using geolocator"),
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                       builder: (context) => const FetchLocationPage(
                             title: 'Fetch location',
                           )),
+                ),
+              ),
+              TextButton(
+                child: const Text("Background location *"),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => BackgroundLocationApp()),
+                ),
+              ),
+              TextButton(
+                child: const Text("Background locator #"),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const BackgroundLocatorApp()),
+                ),
+              ),
+              TextButton(
+                child: const Text("Google Ad"),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GoogleAdApp()),
+                ),
+              ),
+              TextButton(
+                child: const Text("Web view"),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const WebViewApp()),
                 ),
               ),
               TextButton(

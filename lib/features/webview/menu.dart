@@ -50,6 +50,7 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+  // Add the CookieManager to the State class
   final CookieManager cookieManager = CookieManager();
 
   @override
@@ -83,7 +84,8 @@ class _MenuState extends State<Menu> {
               // to send a message that is passed to the named JavascriptChannel's onMessageReceived callback handler.
               case _MenuOptions.javascriptChannel:
                 // This JavaScript is executed when the user chooses the JavaScript Channel Example menu option.
-                // This result is shown in a SnackBar by invoking 'postMessage' on the SnackBar JavascriptChannel.
+                // sends a GET request
+                // The result is shown in a SnackBar by invoking 'postMessage' on the SnackBar JavascriptChannel.
                 await controller.data!.runJavascript(
                     '''
                     var req = new XMLHttpRequest();
@@ -99,6 +101,7 @@ class _MenuState extends State<Menu> {
                     req.send();
                     ''');
                 break;
+
               case _MenuOptions.clearCookies:
                 await _onClearCookies();
                 break;
@@ -176,6 +179,8 @@ class _MenuState extends State<Menu> {
     );
   }
 
+  // -----------------------------------------------------------------------------
+
   Future<void> _onListCookies(WebViewController controller) async {
     // Using the runJavaScriptReturningResult method, your helper method executes 'document.cookie'
     // in the JavaScript context, returning a list of all cookies.
@@ -190,6 +195,7 @@ class _MenuState extends State<Menu> {
   }
 
   Future<void> _onClearCookies() async {
+    // use the clearCookies method of the CookieManager
     // resolves to true if the CookieManager cleared the cookies, and false if there were no cookies to clear.
     final hadCookies = await cookieManager.clearCookies();
     String message = 'There were cookies. Now, they are gone!';
@@ -204,11 +210,12 @@ class _MenuState extends State<Menu> {
     );
   }
 
+  // Adding a cookie by invoking JavaScript.
   Future<void> _onAddCookie(WebViewController controller) async {
     await controller.runJavascript(
         '''var date = new Date();
-    date.setTime(date.getTime()+(30*24*60*60*1000));
-    document.cookie = "FirstName=John; expires=" + date.toGMTString();''');
+          date.setTime(date.getTime()+(30*24*60*60*1000));
+          document.cookie = "FirstName=John; expires=" + date.toGMTString();''');
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
@@ -229,6 +236,7 @@ class _MenuState extends State<Menu> {
     );
   }
 
+  // Removing a cookie involves adding a cookie, with an expiry date set in the past.
   Future<void> _onRemoveCookie(WebViewController controller) async {
     await controller.runJavascript(
         'document.cookie="FirstName=John; expires=Thu, 01 Jan 1970 00:00:00 UTC" ');
@@ -240,11 +248,15 @@ class _MenuState extends State<Menu> {
     );
   }
 
+  // -----------------------------------------------------------------------------
+
+  // Testing the assets
   Future<void> _onLoadFlutterAssetExample(
       WebViewController controller, BuildContext context) async {
     await controller.loadFlutterAsset('assets/www/index.html');
   }
 
+  // File
   Future<void> _onLoadLocalFileExample(
       WebViewController controller, BuildContext context) async {
     final String pathToIndex = await _prepareLocalFile();
@@ -262,6 +274,7 @@ class _MenuState extends State<Menu> {
     return indexFile.path;
   }
 
+  // HTML string
   Future<void> _onLoadHtmlStringExample(
       WebViewController controller, BuildContext context) async {
     await controller.loadHtmlString(kExamplePage);
