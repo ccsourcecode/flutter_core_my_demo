@@ -5,14 +5,14 @@ import 'components.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:flutter/services.dart';
 
-class InAppPurchase extends StatefulWidget {
-  const InAppPurchase({Key? key}) : super(key: key);
+class InAppPurchaseApp extends StatefulWidget {
+  const InAppPurchaseApp({Key? key}) : super(key: key);
 
   @override
   _InAppPurchaseState createState() => _InAppPurchaseState();
 }
 
-class _InAppPurchaseState extends State<InAppPurchase> {
+class _InAppPurchaseState extends State<InAppPurchaseApp> {
   @override
   void initState() {
     super.initState();
@@ -24,7 +24,7 @@ class _InAppPurchaseState extends State<InAppPurchase> {
 
     await Purchases.setDebugLogsEnabled(true);
     await Purchases.configure(PurchasesConfiguration(
-        "goog_siZsXGACMJROLMrMsajYsKzHIpAoF")); // your_public_revenuecat_API_key
+        "goog_siZsXGACMJROLMrMajYKzHIpAoF")); // your_public_revenuecat_API_key
 
     CustomerInfo purchaserInfo;
     try {

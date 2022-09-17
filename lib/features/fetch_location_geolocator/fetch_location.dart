@@ -72,7 +72,15 @@ class _FetchLocationPageState extends State<FetchLocationPage> {
 
     Workmanager().registerPeriodicTask(
       "1",
+      //This is the value that will be
+      // returned in the callbackDispatcher
       fetchBackground,
+      // When no frequency is provided
+      // the default 15 minutes is set.
+      // Minimum frequency is 15 min.
+      // Android will automatically change
+      // your frequency to 15 min
+      // if you have configured a lower frequency.
       frequency: const Duration(minutes: 15),
     );
   }

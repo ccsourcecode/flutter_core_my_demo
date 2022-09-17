@@ -8,7 +8,6 @@ import 'package:background_locator_2/settings/android_settings.dart';
 import 'package:background_locator_2/settings/ios_settings.dart';
 import 'package:background_locator_2/settings/locator_settings.dart';
 import 'package:flutter/material.dart';
-import 'package:location_permissions/location_permissions.dart';
 
 import 'file_manager.dart';
 import 'location_callback_handler.dart';
@@ -161,19 +160,20 @@ class _BackgroundLocatorAppState extends State<BackgroundLocatorApp> {
   }
 
   void _onStart() async {
-    if (await _checkLocationPermission()) {
-      await _startLocator();
-      final isRunning2 = await BackgroundLocator.isServiceRunning();
+    // if (await _checkLocationPermission()) {
+    await _startLocator();
+    final isRunning2 = await BackgroundLocator.isServiceRunning();
 
-      setState(() {
-        isRunning = isRunning2;
-        lastLocation = null;
-      });
-    } else {
-      // show error
-    }
+    setState(() {
+      isRunning = isRunning2;
+      lastLocation = null;
+    });
+    // } else {
+    // show error
+    // }
   }
 
+/*
   Future<bool> _checkLocationPermission() async {
     final access = await LocationPermissions().checkPermissionStatus();
     switch (access) {
@@ -197,6 +197,7 @@ class _BackgroundLocatorAppState extends State<BackgroundLocatorApp> {
         break;
     }
   }
+  */
 
   Future<void> _startLocator() async {
     Map<String, dynamic> data = {'countInit': 1};

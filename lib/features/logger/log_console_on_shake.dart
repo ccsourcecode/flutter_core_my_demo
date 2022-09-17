@@ -9,7 +9,7 @@
 //   final bool debugOnly;
 
 //   const LogConsoleOnShake({
-//     required this.child,
+//     required required this.child,
 //     this.dark,
 //     this.debugOnly = true,
 //   });

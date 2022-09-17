@@ -310,7 +310,7 @@ class LogBar extends StatelessWidget {
   final bool dark;
   final Widget? child;
 
-  const LogBar({super.key, required this.dark, this.child});
+  const LogBar({super.key, required this.dark, required this.child});
 
   @override
   Widget build(BuildContext context) {
