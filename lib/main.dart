@@ -20,9 +20,11 @@ import 'features/custom_loading_indicators/demo.dart';
 import 'features/data_persist.dart';
 import 'features/design_system/demo.dart';
 import 'features/dialogs/demo.dart';
+import 'features/firebase/services/firebase_options.dart';
 import 'features/flutter_map/flutter_map.dart';
 import 'features/form_validation/demo.dart';
 import 'features/function_widget/demo.dart';
+import 'features/geocode/demo.dart';
 import 'features/google_map/google_map.dart';
 import 'features/in_app_notification/demo.dart';
 import 'features/in_app_purchase/in_app_purchase.dart';
@@ -57,8 +59,8 @@ import 'dart:async';
 // }
 
 Future<void> main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   logDemo();
 
   FlutterError.onError = (FlutterErrorDetails details) async {
@@ -280,6 +282,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 onPressed: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => const GoogleMapApp()),
+                ),
+              ),
+              TextButton(
+                child: const Text("Geocode"),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const GeocodeApp()),
                 ),
               ),
               TextButton(
